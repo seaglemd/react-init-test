@@ -101,20 +101,6 @@ class App extends Component {
                 changed={(event) => this.personAgeChangeHandler(event, person.id)} />
             );
           })}
-          {/* <Person
-            name={this.state.persons[0].name}
-            age={this.state.persons[0].age} />
-          <Person
-            name={this.state.persons[1].name}
-            age={this.state.persons[1].age} />
-          <button
-            style={style}
-            onClick={this.switchAnimalAgeHandler.bind(this, 8)}>Switch Age</button>
-          <Person
-            name={this.state.animals[0].name}
-            age={this.state.animals[0].age}
-            click={this.switchAnimalAgeHandler.bind(this, 9)}
-            changed={this.ageChangeHandler}><ul><li>Hobbies: scratching people</li></ul></Person> */}
         </div>
       );
     }
