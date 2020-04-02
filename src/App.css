@@ -25,3 +25,11 @@
   color: black;
   box-shadow: 0 1px 3px rgb(54,54,54);
 }
+
+.Button.Red {
+  background-color: red;
+}
+
+.Button.Red:hover {
+  background-color: salmon;
+}
