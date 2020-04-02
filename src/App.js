@@ -79,12 +79,28 @@ class App extends Component {
   }
 
   render() {
-    // const style = {
-    //   backgroundColor: 'lightgreen',
-    //   font: 'inherit',
-    //   border: '1px solid lightgreen',
-    //   cursor: 'pointer'
-    // };
+
+    const style = {
+      backgroundColor: "green",
+      color: "white",
+      font: "inherit",
+      border: "1px solid green",
+      boxShadow: "0 2px 3px rgb(54, 54, 54)",
+      padding: "8px",
+      cursor: "pointer"
+    };
+
+    const classes = []
+
+    if(this.state.persons.length <= 1) {
+      classes.push('red');
+    }
+
+    if(this.state.persons.length <= 0) {
+      classes.push('bold');
+    }
+
+
 
     let persons = null;
     let animals = null;
@@ -103,6 +119,8 @@ class App extends Component {
           })}
         </div>
       );
+
+      style.backgroundColor = "darkred";
     }
 
     if (this.state.showAnimals) {
@@ -119,8 +137,8 @@ class App extends Component {
 
     return (
       <div className="App">
-        <h1>Hello, world!</h1>
-        <button onClick={this.toggleCardsHandler}>Switch Person Age</button>
+        <h1 className={classes.join(' ')}>Hello, world!</h1>
+        <button style={style} onClick={this.toggleCardsHandler}>Switch Person Age</button>
         {persons}
         {animals}
       </div>
