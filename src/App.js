@@ -93,7 +93,7 @@ class App extends Component {
 
     let persons = null;
     let animals = null;
-    let btnClass = [classes.Button];
+    let btnClass = '';
 
     if (this.state.showPersons) {
       persons = (
@@ -109,7 +109,7 @@ class App extends Component {
           })}
         </div>
       );
-      btnClass.push(classes.Red);
+      btnClass = classes.Red;
     }
 
     if (this.state.showAnimals) {
@@ -127,7 +127,7 @@ class App extends Component {
     return (
       <div className={classes.App}>
         <h1 className={assignedClasses.join(' ')}>Hello, world!</h1>
-        <button  className={btnClass.join(' ')} onClick={this.toggleCardsHandler}>Switch Person Age</button>
+        <button  className={btnClass} onClick={this.toggleCardsHandler}>Switch Person Age</button>
         {persons}
         {animals}
       </div>
