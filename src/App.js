@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import './App.css';
+import classes from './App.css';
 import Person from './Person/Person';
 
 class App extends Component {
@@ -79,14 +79,14 @@ class App extends Component {
   }
 
   render() {
-    const classes = []
+    const assignedClasses = []
 
     if(this.state.persons.length <= 1) {
-      classes.push('red');
+      assignedClasses.push(classes.red);
     }
 
     if(this.state.persons.length <= 0) {
-      classes.push('bold');
+      assignedClasses.push(classes.bold);
     }
 
 
@@ -123,9 +123,9 @@ class App extends Component {
     }
 
     return (
-      <div className="App">
-        <h1 className={classes.join(' ')}>Hello, world!</h1>
-        <button  onClick={this.toggleCardsHandler}>Switch Person Age</button>
+      <div className={classes.App}>
+        <h1 className={assignedClasses.join(' ')}>Hello, world!</h1>
+        <button  className={classes.Button} onClick={this.toggleCardsHandler}>Switch Person Age</button>
         {persons}
         {animals}
       </div>
