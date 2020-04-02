@@ -1,24 +1,7 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
 
 import './App.css';
-import Person from './Person/Person'
-
-const StyledButton = styled.button`
-  background-color: ${props => props.styleStateChange ? 'red' : 'green'};
-  color: white;
-  font: inherit;
-  border: 0;
-  box-shadow: 0 4px 3px rgb(54, 54, 54);
-  padding: 8px;
-  cursor: pointer;
-
-  &:hover  {
-    background-color: ${props => props.styleStateChange ? 'salmon' : 'lightgreen'};
-    color: black;
-    box-shadow: 0px 1px 2px rgb(10,10,10);
-  }
-`;
+import Person from './Person/Person';
 
 class App extends Component {
   state = {
@@ -142,7 +125,7 @@ class App extends Component {
     return (
       <div className="App">
         <h1 className={classes.join(' ')}>Hello, world!</h1>
-        <StyledButton styleStateChange={this.state.showPersons} onClick={this.toggleCardsHandler}>Switch Person Age</StyledButton>
+        <button  onClick={this.toggleCardsHandler}>Switch Person Age</button>
         {persons}
         {animals}
       </div>
