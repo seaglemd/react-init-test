@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
 
 import classes from './App.css';
 import Person from './Person/Person';
@@ -49,7 +50,7 @@ class App extends Component {
     });
 
     // copy the value
-    const person = {...this.state.persons[personIndex]}
+    const person = {...this.state.persons[personIndex]};
     person.age = event.target.value;
 
     // copy the state and apply the value
@@ -100,11 +101,13 @@ class App extends Component {
         <div>
           {this.state.persons.map((person, index) => {
             return (
+              <ErrorBoundary key={person.id}>
               <Person click={() => this.deletePersonHandler(index)}
                 name={person.name}
                 age={person.age}
-                key={person.id}
+                
                 changed={(event) => this.personAgeChangeHandler(event, person.id)} />
+                </ErrorBoundary>
             );
           })}
         </div>
