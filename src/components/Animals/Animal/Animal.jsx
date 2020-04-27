@@ -1,11 +1,9 @@
 import React from 'react';
-import classes from './Person.css';
+import classes from './Animal.css';
 
-const person = (props) => {
+const animal = (props) => {
     return (
-
-        
-        <div className={classes.Person}>
+        <div className={classes.Animal}>
             <p onClick={props.click}>
                 I'm {props.name} and I am {props.age}.
             </p>
@@ -15,4 +13,4 @@ const person = (props) => {
     );
 }
 
-export default person;
+export default animal;

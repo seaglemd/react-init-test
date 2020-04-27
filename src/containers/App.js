@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
 
 import classes from './App.css';
-import Person from './Person/Person';
+import Persons from '../components/Persons/Persons';
+import Animals from '../components/Animals/Animals';
+import Cockpit from '../components/Cockpit/Cockpit';
 
 class App extends Component {
   state = {
@@ -33,6 +34,14 @@ class App extends Component {
     const persons = [...this.state.persons];
     persons.splice(index, 1);
     this.setState({ persons: persons });
+  }
+
+  deleteAnimalHandler = (index) => {
+    // prevent from manipulating original data by reference, by copyi ng, copying is done with the spread operator here.
+    const animals = [...this.state.animals];
+    // index is the index of the element being removed, 1 is the number of elements to remove
+    animals.splice(index, 1);
+    this.setState({ animals: animals });
   }
 
   switchAnimalAgeHandler = (newAge) => {
@@ -75,62 +84,35 @@ class App extends Component {
     animals[animalIndex] = animal;
     this.setState({
       animals: animals
-    });
-    
+    });    
   }
 
   render() {
-    const assignedClasses = []
-
-    if(this.state.persons.length <= 1) {
-      assignedClasses.push(classes.red);
-    }
-
-    if(this.state.persons.length <= 0) {
-      assignedClasses.push(classes.bold);
-    }
-
-
 
     let persons = null;
     let animals = null;
-    let btnClass = '';
 
     if (this.state.showPersons) {
-      persons = (
-        <div>
-          {this.state.persons.map((person, index) => {
-            return (
-              <ErrorBoundary key={person.id}>
-              <Person click={() => this.deletePersonHandler(index)}
-                name={person.name}
-                age={person.age}
-                
-                changed={(event) => this.personAgeChangeHandler(event, person.id)} />
-                </ErrorBoundary>
-            );
-          })}
-        </div>
-      );
-      btnClass = classes.Red;
+      persons = <Persons 
+            persons={this.state.persons}
+            clicked={this.deletePersonHandler}
+            changed={this.personAgeChangeHandler}/>
     }
 
     if (this.state.showAnimals) {
-      animals = (
-        <div>
-          {this.state.animals.map(animal => {
-            return (
-              <Person name={animal.name} age={animal.age} key={animal.id} changed={(event) => this.animalAgeChangeHandler(event, animal.id)} />
-            );
-          })}
-        </div>
-      );
+      animals = <Animals
+            animals={this.state.animals}
+            clicked={this.deleteAnimalHandler}
+            changed={this.animalAgeChangeHandler}/>
     }
 
     return (
       <div className={classes.App}>
-        <h1 className={assignedClasses.join(' ')}>Hello, world!</h1>
-        <button  className={btnClass} onClick={this.toggleCardsHandler}>Switch Person Age</button>
+        <Cockpit
+         showPersons={this.state.showPersons}
+         persons={this.state.persons}
+         clicked={this.toggleCardsHandler}
+        />
         {persons}
         {animals}
       </div>
